@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,21 +57,22 @@ public class LojaApplicationTests {
 	private static List<Product> newProductsDesconto10 = new ArrayList<>();
 	private static Map<String, String> variablesDesconto10 = new HashMap<>();
 	
-	static {		
+	@BeforeClass
+	public static void init() {
 		newProducts.add(new Product(1L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(1)));
 		variables.put("numeroControleValue", "1");
 		
 		
 		newProducts10.add(new Product(2L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(1)));
-		newProducts10.add(new Product(3L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(1)));
-		newProducts10.add(new Product(4L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(1)));
-		newProducts10.add(new Product(5L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(1)));
-		newProducts10.add(new Product(6L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(1)));
-		newProducts10.add(new Product(7L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(1)));
-		newProducts10.add(new Product(8L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(1)));
-		newProducts10.add(new Product(9L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(1)));
-		newProducts10.add(new Product(10L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(1)));
-		newProducts10.add(new Product(11L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(1)));
+		newProducts10.add(new Product(3L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(2)));
+		newProducts10.add(new Product(4L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(3)));
+		newProducts10.add(new Product(5L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(4)));
+		newProducts10.add(new Product(6L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(5)));
+		newProducts10.add(new Product(7L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(6)));
+		newProducts10.add(new Product(8L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(7)));
+		newProducts10.add(new Product(9L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(8)));
+		newProducts10.add(new Product(10L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(9)));
+		newProducts10.add(new Product(11L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(10)));
 		variables10.put("numeroControleValue", "2");
 		
 		newProducts11.add(new Product(12L,null, "TV", 1 , new BigDecimal("1000.00"), new Client(1)));
@@ -137,7 +140,7 @@ public class LojaApplicationTests {
 			
 		//GET
 		Product[] products = restTemplate.getForObject(URL_GET_PRODUCT+"?numeroControle={numeroControleValue}",   Product[].class, variablesDesconto5);	
-		assertEquals(products[0].getValor(), new BigDecimal("4750.0"));		
+		assertEquals(products[0].getValor(), new BigDecimal("4750.00"));		
 		
 	}
 	
@@ -149,7 +152,7 @@ public class LojaApplicationTests {
 			
 		//GET
 		Product[] products = restTemplate.getForObject(URL_GET_PRODUCT+"?numeroControle={numeroControleValue}",   Product[].class, variablesDesconto10);	
-		assertEquals(products[0].getValor(), new BigDecimal("9000.0"));			
+		assertEquals(products[0].getValor(), new BigDecimal("9000.00"));			
 		
 	}
 
